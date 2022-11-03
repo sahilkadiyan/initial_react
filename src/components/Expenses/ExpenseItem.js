@@ -1,19 +1,25 @@
+import React, { useState } from "react";
 import "./ExpenseItem.css"
 import ExpenseDate from "./ExpenseDate";
 import Card from '../UI/Card';
-
+//useState is a hook in reactjs
 function ExpensItem(props) {
-    // const expenseDate = new Date(2022, 11, 2);
-    // const expenseTitle = 'Car Insurance';
-    // const expenseAmount = 294.67
-    let title=props.title;
-   const clickHandler=()=>{
-    title="updated";
-    console.log(title);
-   }
+
+
+    const [title, setTitle] = useState(props.title); //must be called directly inside the function
+    //useState returns a function 
+    //here setTitle is a state updating function
+    //we want that this component is being called again when the state changes by pressing the buttton 
+
+
+
+    const clickHandler = () => {
+        setTitle('Updated');  //by this we telling the react that we want to assign new title that is updated when the state changes
+        console.log(title);
+    }
     return (
         <Card className="expense-item">
-           <ExpenseDate date={props.date}/>
+            <ExpenseDate date={props.date} />
             <div className="expense-item__description">
                 <h2>{title}</h2>
                 <div className="expense-item__price">${props.amount}</div>
